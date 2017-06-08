@@ -1,0 +1,148 @@
+$bgc: #1c1c1c;
+$whitecolor:white;
+* {
+    font-family: 微軟正黑體;
+    // border: solid 1px;
+}
+
+@mixin flex_center {
+    display: flex;
+    justify-content: center; //左右置中
+    align-items: center; //垂直置中
+}
+
+@mixin size($w, $h: $w) {
+    width: $w;
+    height: $h;
+}
+
+@mixin trans($t: 0.5s, $td:0s) {
+    transition: $t $td;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(30px);
+        filter: saturate(0%);    //黑白變彩色的效果
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+        filter: saturate(100%);
+    }
+}
+
+@keyframes sliceIn {
+    0% {
+        transform: translateX(-50px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+html,
+body {
+    @include size(100%);
+    overflow: hidden;
+    background-color: $bgc;
+}
+
+#app {
+    @include size(100%);
+    @include flex_center;
+}
+
+.carousel {
+    @include size(1430px, 250px);
+    white-space: nowrap; //從左到右不換行
+}
+
+.posts {
+    @include trans;
+    height: 100%;
+    position: relative;
+}
+
+.postbox {
+    display: inline-block; //整條變橫
+    height: 100%;
+    cursor: pointer; //改變游標形狀
+    .cover {
+        @include size(330px, 100%);
+        @include flex_center;
+        @include trans;
+        margin-left: 550px;
+        margin-right: 550px;
+        background-size: cover;
+        background-position: center center;
+        cursor: pointer;
+        &:hover {
+            @include size(340px, 110%);
+            .infos {
+                transform: translateX(-220px) translateY(-10px);
+            }
+        }
+    }
+    .infos {
+        @include trans;
+        transform: translateX(-200px);
+        color: $whitecolor;
+        text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+        * {
+            margin: 0;
+        }
+        h1 {
+            margin-bottom: 10px;
+            font-size: 50px;
+            font-weight: 400;
+        }
+        h5 {
+            background-color: $whitecolor;
+            color: black;
+            padding: 4px 12px;
+            font-size: 20px;
+            font-weight: 300;
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+        }
+    }
+}
+
+.control_left,
+.control_right {
+    @include size(40px);
+    @include flex_center;
+    @include trans;
+    position: fixed;
+    top:50%;
+    border: solid 1px white;
+    position: fixed;
+    border-radius: 50%;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    &:hover {
+        background-color: $whitecolor;
+        color: black;
+    }
+}
+
+.control_left {
+    left: 50px;
+}
+
+.control_right {
+    right: 50px;
+}
+
+.cur_item {
+    .cover {
+        animation: fadeIn 1.5s ease both;
+    }
+    .infos {
+        h5 {
+            animation: sliceIn 1.5s 0.1s ease;
+        }
+    }
+}
