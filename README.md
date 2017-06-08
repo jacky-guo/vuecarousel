@@ -11,7 +11,7 @@ npm run dev
 # build for production with minification
 npm run build
 
-#demo
+# demo
 https://jacky-guo.github.io/vuecarousel/
 ```
 
