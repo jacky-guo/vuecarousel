@@ -1,7 +1,7 @@
 $bgc: #1c1c1c;
 $whitecolor:white;
 * {
-    font-family: 微軟正黑體;
+    // font-family: 微軟正黑體;
     // border: solid 1px;
 }
 
@@ -66,9 +66,11 @@ body {
 }
 
 .postbox {
+    // @include trans;
     display: inline-block; //整條變橫
     height: 100%;
     cursor: pointer; //改變游標形狀
+    position: absolute;
     .cover {
         @include size(330px, 100%);
         @include flex_center;
@@ -136,7 +138,11 @@ body {
     right: 50px;
 }
 
+.last_item{
+    @include trans
+}
 .cur_item {
+    @include trans
     .cover {
         animation: fadeIn 1.5s ease both;
     }
