@@ -14,7 +14,7 @@ npm run build
 # demo
 https://jacky-guo.github.io/vuecarousel/
 
-#v6.9 Update Content
+# v6.9 Update Content
 1.fix font-awesome bug
 2.modify carousel algorithm
 
