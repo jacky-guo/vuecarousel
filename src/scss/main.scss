@@ -24,7 +24,7 @@ $whitecolor:white;
     0% {
         opacity: 0;
         transform: translateX(30px);
-        filter: saturate(0%);    //黑白變彩色的效果
+        filter: saturate(0%); //黑白變彩色的效果
     }
     100% {
         opacity: 1;
@@ -117,7 +117,7 @@ body {
     @include flex_center;
     @include trans;
     position: fixed;
-    top:50%;
+    top: 50%;
     border: solid 1px white;
     position: fixed;
     border-radius: 50%;
@@ -138,12 +138,12 @@ body {
     right: 50px;
 }
 
-.last_item{
+.last_item {
     @include trans
 }
+
 .cur_item {
-    @include trans
-    .cover {
+    @include trans .cover {
         animation: fadeIn 1.5s ease both;
     }
     .infos {

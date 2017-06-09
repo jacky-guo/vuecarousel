@@ -1,7 +1,7 @@
 <template>
   <div class="carousel">
     <div class="posts">
-      <div class="postbox" v-for="(w,id) in works" :class="{cur_item: id==((now_index+works.length-2)%6),last_item: id==((last_index+works.length-2)%6)}" :style="postleft(id)">
+      <div class="postbox" v-for="(w,id) in works" :class="{cur_item : id==((now_index + works.length - Math.floor(works.length / 2)) % 6),last_item : id==((last_index + works.length - Math.floor(works.length / 2)) % 6)}" :style="postleft(id)">
         <div class="cover" :style="bg_css(w.cover)">
           <div class="infos">
             <h1>{{w.title}}</h1>
@@ -73,19 +73,9 @@ export default {
       // (0 + (-1) + 5) % 5 = 4
       this.last_index = this.now_index
       this.now_index = (this.now_index + d + this.works.length) % this.works.length
-      // this.now_index = (this.now_index + d)
     },
     postleft: function (id) {
-      // var leftlength = 5000
-      // console.log((this.now_index - 1 % 6))
-      // if (this.now_index === id) {
-      //   leftlength = 0
-      // } else if (((this.now_index + 1) % 6) === id) {
-      //   leftlength = (-this.span * -1)
-      // } else if (((this.now_index - 1) % 6) === id) {
-      //   leftlength = (-this.span * 1)
-      // }
-      var leftlength = -(this.span * ((this.now_index - id + this.works.length) % this.works.length - 2))
+      var leftlength = -(this.span * ((this.now_index - id + this.works.length) % this.works.length - Math.floor(this.works.length / 2)))
       return {
         'left': leftlength + 'px'
       }
@@ -96,11 +86,6 @@ export default {
       return {
         'left': (-this.span * this.now_index) + 'px'
         //  左距離＝偏移負的單格距離＊現在正在瀏覽的index
-      }
-    },
-    computed_position () {
-      return {
-        'left': (-this.span * this.now_index) + 'px'
       }
     }
   }
