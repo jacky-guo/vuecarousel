@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import Store from '../store.js'
 var works = [
   {
     title: '海象樂園',
@@ -56,10 +57,23 @@ export default {
   name: 'carousel',
   data () {
     return {
-      now_index: 3,
+      now_index: Store.fetch() == null ? 3 : Store.fetch().now_index,
       works: works,
       span: 1430,
-      last_index: 3
+      last_index: Store.fetch() == null ? 3 : Store.fetch().last_index
+    }
+  },
+  watch: {
+    now_index: {
+      handler: function (val, oldVal) {
+        let item = {
+          'now_index': val,
+          'last_index': oldVal
+        }
+        Store.save(item)
+        console.log(Store.fetch().now_index)
+      },
+      deep: true
     }
   },
   methods: {
